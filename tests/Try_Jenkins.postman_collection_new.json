@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "3920a1f7-b78a-4765-9980-285145136286",
+		"name": "Try_Jenkins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "download PDF or XML Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b39a5c01-a50f-4e21-a01c-c1a47c01c0d4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "s3a://clvt-contenthub-int/artifact/urn:asset:29/330191047_20200321210541375/resources/1678-992X-sa-77-06-e20180185.xml"
+				},
+				"url": "https://pdf2xml-common.int.singularity.clarivate.com/pdf2xml/sxmlgenerator-api/download-pdforxml-file"
+			},
+			"response": []
+		},
+		{
+			"name": "Update status by bundle id Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d83cd02-1d72-4215-bbe9-1da78f858ccf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" let  jsonData = pm.response.json();\r",
+							"  console.log(jsonData);\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"COMPLETED_SI\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "https://pdf2xml-common.int.singularity.clarivate.com/pdf2xml/scholarlyitemmaster-api/updateallitemstatusbybundleid/330198671_20200528062555900/status/COMPLETED_SI"
+			},
+			"response": []
+		},
+		{
+			"name": "Upadet Status by record ID Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "117da40b-673c-4b68-9d40-16547abb9453",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" let  jsonData = pm.response.json();\r",
+							"  console.log(jsonData);\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"OPEN\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "https://pdf2xml-common.int.singularity.clarivate.com/pdf2xml/scholarlyitemmaster-api/bundleitem/urn:si:00772/recordstatus/OPEN"
+			},
+			"response": []
+		},
+		{
+			"name": "FetchingBundleItemsBasedOnBundleId Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7c37a6d-59b2-497f-98e4-5e7a7258650e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" let  jsonData = pm.response.json();\r",
+							"  console.log(jsonData);\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"pdfFilePGUID\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://pdf2xml-common.dev.singularity.clarivate.com/pdf2xml/scholarlyitemmaster-api/bundleitems/330160291_20190916014543936"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
