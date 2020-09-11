@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "api-tests-integration": "newman run tests/Try_Jenkins.postman_collection_new.json --reporters junit --reporter-junit-export newman.xml"
+    "api-tests-integration": "newman run tests/Try_Jenkins.postman_collection_new.json --reporters cli,junit --reporter-junit-export "newman/myReport.xml""
   },
   "author": "Prutha",
   "dependencies": {
